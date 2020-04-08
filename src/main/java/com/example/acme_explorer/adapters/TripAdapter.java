@@ -1,6 +1,7 @@
 package com.example.acme_explorer.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.acme_explorer.DetailsTripActivity;
+import com.example.acme_explorer.ListTripsActivity;
 import com.example.acme_explorer.R;
 import com.example.acme_explorer.entity.Trip;
 import com.squareup.picasso.Picasso;
@@ -20,7 +23,7 @@ public class TripAdapter  extends
         RecyclerView.Adapter<TripAdapter.ViewHolder> {
 
     private List<Trip> mTrips;
-
+    private Context context;
     public TripAdapter(List<Trip> mTrips) {
         this.mTrips = mTrips;
     }
@@ -28,7 +31,7 @@ public class TripAdapter  extends
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View tripView = layoutInflater.inflate(R.layout.trip_item, parent, false);
         return new ViewHolder(tripView);
@@ -36,7 +39,7 @@ public class TripAdapter  extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Trip trip = mTrips.get(position);
+        final Trip trip = mTrips.get(position);
         TextView textViewTitle = holder.textViewTitle;
         TextView textViewDescription = holder.textViewDescription;
         ImageView imageView = holder.imageView;
@@ -49,6 +52,15 @@ public class TripAdapter  extends
                 .error(R.drawable.ic_sun)
                 .resize(100, 100)
                 .into(imageView);
+
+        holder.tripView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( context, DetailsTripActivity.class);
+                intent.putExtra("trip", trip);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -60,8 +72,10 @@ public class TripAdapter  extends
 
         private TextView textViewTitle, textViewDescription;
         private ImageView imageView;
+        private View tripView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tripView = itemView;
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDescription = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageViewTrip);

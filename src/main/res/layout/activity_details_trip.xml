@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".DetailsTripActivity">
+
+    <ImageView
+        android:id="@+id/imageViewTripDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!-- Title View -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textColor="@color/c2"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </TextView>
+    </LinearLayout>
+
+    <!-- Price View -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/precio"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textColor="@color/c2"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </TextView>
+    </LinearLayout>
+
+    <!-- Fecha salida -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date_of_departure"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textColor="@color/c2"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </TextView>
+    </LinearLayout>
+
+    <!-- End Date -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date_of_arrival"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:textColor="@color/c2"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </TextView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:gravity="center_horizontal"
+        android:textColor="@color/c2"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp">
+    </TextView>
+
+</LinearLayout>
