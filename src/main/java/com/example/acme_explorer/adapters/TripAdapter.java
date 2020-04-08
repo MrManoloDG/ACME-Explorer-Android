@@ -50,7 +50,8 @@ public class TripAdapter  extends
                 .load(trip.getImgUrl())
                 .placeholder(R.drawable.ic_sun)
                 .error(R.drawable.ic_sun)
-                .resize(100, 100)
+                .resize(350, 350)
+                .onlyScaleDown()
                 .into(imageView);
 
         holder.tripView.setOnClickListener(new View.OnClickListener() {

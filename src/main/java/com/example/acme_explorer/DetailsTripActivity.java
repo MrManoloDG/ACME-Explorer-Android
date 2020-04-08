@@ -46,7 +46,8 @@ public class DetailsTripActivity extends AppCompatActivity {
                 .load(trip.getImgUrl())
                 .placeholder(R.drawable.ic_sun)
                 .error(R.drawable.ic_sun)
-                .resize(400, 400)
+                .resize(1000, 1000)
+                .onlyScaleDown()
                 .into(imageView);
     }
 }
