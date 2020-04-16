@@ -20,4 +20,9 @@
     <string name="date_of_arrival">Date of arrival</string>
     <string name="date_of_departure">Date of departure</string>
     <string name="description">Description</string>
+    <string name="end_date">End Date</string>
+    <string name="minimum_price">Minimum Price</string>
+    <string name="maximum_price">Maximum Price</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="selected">Selected</string>
 </resources>

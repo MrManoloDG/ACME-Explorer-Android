@@ -1,5 +1,9 @@
 package com.example.acme_explorer;
 
+import com.example.acme_explorer.entity.Trip;
+
+import java.util.ArrayList;
+
 public class Constantes {
     public final static String[] ciudades={"Tirana","BerlÃ­n","Andorra La Vieja","ErevÃ¡n","Viena","BakÃº","Bruselas",
             "Minsk","Sarajevo","SofÃ­a","Praga","Zagreb","Copenhague","Bratislava","Lublijana","Madrid","TallÃ­n",
@@ -17,4 +21,6 @@ public class Constantes {
             "https://png.pngtree.com/element_pic/00/00/00/0056a3602a2cf41.jpg",
             "https://png.pngtree.com/element_our/sm/20180416/sm_5ad452dbaaf09.png"};
     public static final String IntentViaje ="Viaje" ;
+
+    public static ArrayList<Trip> viajes;
 }

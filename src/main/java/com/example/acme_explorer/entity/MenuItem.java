@@ -2,6 +2,7 @@ package com.example.acme_explorer.entity;
 
 import com.example.acme_explorer.ListTripsActivity;
 import com.example.acme_explorer.R;
+import com.example.acme_explorer.SelectedTripsActivity;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,7 @@ public class MenuItem {
     public static ArrayList<MenuItem> getMenu(){
         ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
         menu.add(new MenuItem("Listado de viajes", R.drawable.ic_airplanemode_active_black_24dp, ListTripsActivity.class));
+        menu.add(new MenuItem("Viajes seleccionados", R.drawable.ic_star_black_50dp, SelectedTripsActivity.class));
         return menu;
     }
 }

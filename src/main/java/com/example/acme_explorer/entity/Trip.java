@@ -10,17 +10,25 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Trip implements Serializable {
+    private int id;
     private String title, description, imgUrl;
     private Date startDate, endDate;
     private float price;
+    private boolean selected;
 
-    public Trip(String title, String description, String imgUrl, Date startDate, Date endDate, float price) {
+    public Trip(int id, String title, String description, String imgUrl, Date startDate, Date endDate, float price) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.imgUrl = imgUrl;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
+        this.selected = false;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -71,6 +79,14 @@ public class Trip implements Serializable {
         this.endDate = endDate;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     public static ArrayList<Trip> generateTrips(){
         ArrayList<Trip> trips = new ArrayList<Trip>();
         Random r = new Random();
@@ -85,7 +101,7 @@ public class Trip implements Serializable {
             Date rDate = new Date(rd.nextLong(fechaInicio.getTime(), fechaFin.getTime()));
             calendar.setTime(rDate);
             calendar.add(Calendar.DAY_OF_YEAR,rd.nextInt(2,13));
-            trips.add(new Trip(Constantes.ciudades[r.nextInt(Constantes.ciudades.length)],
+            trips.add(new Trip(i,Constantes.ciudades[r.nextInt(Constantes.ciudades.length)],
                     "Lugar de salida: " + Constantes.lugarSalida[r.nextInt(6)],
                     Constantes.urlImagenes[r.nextInt(7)],
                     rDate,

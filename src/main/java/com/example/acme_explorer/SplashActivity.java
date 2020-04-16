@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.acme_explorer.entity.Trip;
+
 public class SplashActivity extends AppCompatActivity {
 
     private final int DURACION=1000;
@@ -14,6 +16,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Constantes.viajes = Trip.generateTrips();
 
         new Handler().postDelayed(new Runnable() {
             @Override

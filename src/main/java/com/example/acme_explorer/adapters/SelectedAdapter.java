@@ -1,9 +1,7 @@
 package com.example.acme_explorer.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.acme_explorer.DetailsTripActivity;
-import com.example.acme_explorer.ListTripsActivity;
 import com.example.acme_explorer.R;
 import com.example.acme_explorer.entity.Trip;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class TripAdapter  extends
-        RecyclerView.Adapter<TripAdapter.ViewHolder> {
+public class SelectedAdapter extends
+        RecyclerView.Adapter<SelectedAdapter.ViewHolder> {
 
     private List<Trip> mTrips;
     private Context context;
-    public TripAdapter(List<Trip> mTrips) {
+    public SelectedAdapter(List<Trip> mTrips) {
         this.mTrips = mTrips;
     }
 
@@ -37,7 +35,7 @@ public class TripAdapter  extends
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View tripView = layoutInflater.inflate(R.layout.trip_item, parent, false);
+        View tripView = layoutInflater.inflate(R.layout.trip_selected_item, parent, false);
         return new ViewHolder(tripView);
     }
 
@@ -60,22 +58,11 @@ public class TripAdapter  extends
                 .onlyScaleDown()
                 .into(imageView);
 
-
-        if (trip.isSelected()){
-            imageButton.setImageResource(R.drawable.ic_star_black_24dp);
-        } else {
-            imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
-        }
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trip.setSelected(!trip.isSelected());
-                if (trip.isSelected()){
-                    imageButton.setImageResource(R.drawable.ic_star_black_24dp);
-                } else {
-                    imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
-                }
+                Snackbar.make(v, "Trip added to shopping cart", Snackbar.LENGTH_LONG)
+                        .setAction("Buy", null).show();
             }
         });
 
@@ -85,7 +72,7 @@ public class TripAdapter  extends
             public void onClick(View v) {
                 Intent intent = new Intent( context, DetailsTripActivity.class);
                 intent.putExtra("trip", trip);
-                ((Activity)context).startActivityForResult(intent,2);
+                context.startActivity(intent);
             }
         });
     }
