@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "25917423956",
+    "firebase_url": "https://masterits-1d7fe.firebaseio.com",
+    "project_id": "masterits-1d7fe",
+    "storage_bucket": "masterits-1d7fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25917423956:android:fdd43af9a5f0091b42c8c1",
+        "android_client_info": {
+          "package_name": "com.example.acme_explorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25917423956-nsdlt2cee9hd6rb8uk3343u5jrfk8gjr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.acme_explorer",
+            "certificate_hash": "cc080aa62c2580b2371a6ce6ec14ba8e832c120b"
+          }
+        },
+        {
+          "client_id": "25917423956-5thpkrmme93ug1i3fh6sgfb6j03ond19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVpF2SbBITxhC3U9bndV7diq9ALujtn-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25917423956-5thpkrmme93ug1i3fh6sgfb6j03ond19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

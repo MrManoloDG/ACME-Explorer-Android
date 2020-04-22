@@ -25,4 +25,28 @@
     <string name="maximum_price">Maximum Price</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
     <string name="selected">Selected</string>
+    <string name="login_email_et_hint">E-mail</string>
+    <string name="login_password_et_hint">Password</string>
+    <string name="login_button_mail_text">Login</string>
+    <string name="login_button_google_text">Login with google</string>
+    <string name="login_button_register_text">Register</string>
+    <string name="login_mail_error_1">Email must not be empty</string>
+    <string name="login_mail_error_2">Password must not be empty</string>
+    <string name="login_mail_access_error">An error was appear during login</string>
+    <string name="login_verified_mail_error">Your account is not validated, ¿Do you want to send you a new verification email?</string>
+    <string name="login_verified_mail_error_ok">Send mail</string>
+    <string name="login_verified_mail_error_sent">Verification mail sent to your email</string>
+    <string name="login_verified_mail_error_no_sent">Can\'t sent a verification mail to your account</string>
+    <string name="login_verified_mail_error_cancel">Cancel</string>
+    <string name="login_google_play_services_error">Must to update google play services before continue</string>
+    <string name="login_download_gps">Update</string>
+    <string name="gps_download_url">market://details?id=com.google.android.gms</string>
+    <string name="market_download_url">https://play.google.com/store/apps/details?id=com.google.android.gms</string>
+    <string name="default_client_id">25917423956-5thpkrmme93ug1i3fh6sgfb6j03ond19.apps.googleusercontent.com</string>
+    <string name="login_completed">User %1$ signIn Successfull</string>
+    <string name="login_password_et_conf_hint">Repeat Password</string>
+    <string name="registrer_user">Registrer user</string>
+    <string name="signup_error_user">Email not valid</string>
+    <string name="signup_error_pass">Password not valid</string>
+    <string name="signup_error_pass_not_equal">Password doesn\'t match</string>
 </resources>

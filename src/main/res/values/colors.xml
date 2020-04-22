@@ -8,4 +8,7 @@
     <color name='c3'>#03588C</color>
     <color name='c4'>#73A2BF</color>
     <color name='c5'>#F2CAA7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red_google">#F44336</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
