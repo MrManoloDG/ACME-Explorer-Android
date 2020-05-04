@@ -23,9 +23,18 @@ public class SelectedTripsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_trips);
         recyclerView=findViewById(R.id.recyclerViewTrips);
-        tripsSelected = (ArrayList<Trip>) Constantes.viajes.clone();
-        tripsSelected.removeIf(n -> (!n.isSelected()));
-        SelectedAdapter adapter = new SelectedAdapter(tripsSelected);
+        SelectedAdapter adapter = new SelectedAdapter();
+        adapter.setDataChangedListener(() -> {
+            if (adapter.getItemCount() > 0 ) {
+                recyclerView.setVisibility(View.VISIBLE);
+            } else {
+                recyclerView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        adapter.setErrorListener((error) -> {
+            recyclerView.setVisibility(View.INVISIBLE);
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
 

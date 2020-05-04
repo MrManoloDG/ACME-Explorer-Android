@@ -1,17 +1,12 @@
 package com.example.acme_explorer;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -19,7 +14,6 @@ import android.widget.Switch;
 import com.example.acme_explorer.adapters.TripAdapter;
 import com.example.acme_explorer.entity.Trip;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListTripsActivity extends AppCompatActivity {
@@ -27,6 +21,8 @@ public class ListTripsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayout filter;
     Switch columns;
+
+    TripAdapter adapter;
 
     Long filter_priceMin = Long.valueOf(0);
     Long filter_priceMax = Long.valueOf(0);
@@ -38,7 +34,8 @@ public class ListTripsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_trips);
         recyclerView=findViewById(R.id.recyclerViewTrips);
-        TripAdapter adapter = new TripAdapter(Constantes.viajes);
+        adapter = new TripAdapter();
+        confAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
 
@@ -68,6 +65,28 @@ public class ListTripsActivity extends AppCompatActivity {
         });
     }
 
+    private void confAdapter() {
+        adapter.setDataChangedListener(() -> {
+            if (adapter.getItemCount() > 0 ) {
+                recyclerView.setVisibility(View.VISIBLE);
+            } else {
+                recyclerView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        adapter.setErrorListener((error) -> {
+            recyclerView.setVisibility(View.INVISIBLE);
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adapter != null && adapter.listenerRegistration != null) {
+            adapter.listenerRegistration.remove();
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -87,59 +106,11 @@ public class ListTripsActivity extends AppCompatActivity {
     }
 
     private void refreshRecycle(final Long filter_dateInit, final Long filter_dateEnd, final Long filter_priceMin, final Long filter_priceMax) {
-        List<Trip> filterTripsList = (List<Trip>) Constantes.viajes.clone();
 
-        filterTripsList.removeIf(n -> (!(check_dateInit(filter_dateInit,n) && check_dateEnd(filter_dateEnd,n) && check_priceMin(filter_priceMin,n) && check_priceMax(filter_priceMax,n))));
-        TripAdapter adapter = new TripAdapter(filterTripsList);
+        adapter = new TripAdapter(true,filter_dateInit,filter_dateEnd,filter_priceMin,filter_priceMax);
+        confAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getBaseContext(),1));
     }
 
-    private boolean check_dateInit(Long filter, Trip trip){
-        if(filter == Long.valueOf(0)){
-            return true;
-        } else {
-            if(filter <= trip.getStartDate().getTime()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    private boolean check_dateEnd(Long filter, Trip trip){
-        if(filter == Long.valueOf(0)){
-            return true;
-        } else {
-            if(filter >= trip.getEndDate().getTime()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    private boolean check_priceMin(Long filter, Trip trip){
-        if(filter == Long.valueOf(0)){
-            return true;
-        } else {
-            if(filter <= trip.getPrice()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    private boolean check_priceMax(Long filter, Trip trip){
-        if(filter == Long.valueOf(0)){
-            return true;
-        } else {
-            if(filter >= trip.getPrice()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
 }

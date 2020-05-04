@@ -1,6 +1,8 @@
 package com.example.acme_explorer.entity;
 
 import com.example.acme_explorer.Constantes;
+import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +13,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Trip implements Serializable {
     private int id;
+
     private String title, description, imgUrl;
+
+    @DocumentId
+    private String documentId;
     private Date startDate, endDate;
     private float price;
     private boolean selected;
@@ -25,6 +31,30 @@ public class Trip implements Serializable {
         this.endDate = endDate;
         this.price = price;
         this.selected = false;
+    }
+
+    public Trip(String title, String description, String imgUrl, Date startDate, Date endDate, float price) {
+        this.title = title;
+        this.description = description;
+        this.imgUrl = imgUrl;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.price = price;
+        this.selected = false;
+    }
+
+
+    public Trip() {
+        this.startDate = new Date();
+        this.endDate = new Date();
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public int getId() {
@@ -63,20 +93,38 @@ public class Trip implements Serializable {
         this.price = price;
     }
 
-    public Date getStartDate() {
+    public Date getStartDateReturningDate() {
         return startDate;
     }
 
+    /*
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }*/
+
+    public void setStartDate(long startDate) {
+        this.startDate.setTime(startDate);
     }
 
-    public Date getEndDate() {
+    public Date getEndDateReturningDate() {
         return endDate;
     }
 
+    /*
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }*/
+
+    public long getStartDate() {
+        return startDate.getTime();
+    }
+
+    public long getEndDate() {
+        return endDate.getTime();
+    }
+
+    public void setEndDate(long endDate) {
+        this.endDate.setTime(endDate);
     }
 
     public boolean isSelected() {
@@ -85,6 +133,53 @@ public class Trip implements Serializable {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Trip trip = (Trip) o;
+
+        if (id != trip.id) return false;
+        if (Float.compare(trip.price, price) != 0) return false;
+        if (selected != trip.selected) return false;
+        if (title != null ? !title.equals(trip.title) : trip.title != null) return false;
+        if (description != null ? !description.equals(trip.description) : trip.description != null)
+            return false;
+        if (imgUrl != null ? !imgUrl.equals(trip.imgUrl) : trip.imgUrl != null) return false;
+        if (startDate != null ? !startDate.equals(trip.startDate) : trip.startDate != null)
+            return false;
+        return endDate != null ? endDate.equals(trip.endDate) : trip.endDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (imgUrl != null ? imgUrl.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + (selected ? 1 : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                ", selected=" + selected +
+                ", documentId='" + documentId+ '\'' +
+                '}';
     }
 
     public static ArrayList<Trip> generateTrips(){

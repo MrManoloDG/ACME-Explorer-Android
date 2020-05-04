@@ -1,5 +1,6 @@
 package com.example.acme_explorer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.acme_explorer.entity.Trip;
+import com.example.acme_explorer.services.FirestoreService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -43,8 +49,8 @@ public class DetailsTripActivity extends AppCompatActivity {
         // Format to Date String
         String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
-        textViewStartDate.setText(df.format(trip.getStartDate()));
-        textViewEndDate.setText(df.format(trip.getEndDate()));
+        textViewStartDate.setText(df.format(trip.getStartDateReturningDate()));
+        textViewEndDate.setText(df.format(trip.getEndDateReturningDate()));
 
         textViewDescription.setText(trip.getDescription());
 
@@ -65,13 +71,17 @@ public class DetailsTripActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Constantes.viajes.get(trip.getId()).setSelected(!trip.isSelected());
                 trip.setSelected(!trip.isSelected());
-                if (trip.isSelected()){
-                    imageButton.setImageResource(R.drawable.ic_star_black_24dp);
-                } else {
-                    imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
-                }
+                FirestoreService.getServiceInstance().selectTrip(trip, new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (trip.isSelected()){
+                            imageButton.setImageResource(R.drawable.ic_star_black_24dp);
+                        } else {
+                            imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
+                        }
+                    }
+                });
             }
         });
     }

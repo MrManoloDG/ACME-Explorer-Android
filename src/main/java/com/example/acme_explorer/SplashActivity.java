@@ -17,8 +17,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Constantes.viajes = Trip.generateTrips();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
