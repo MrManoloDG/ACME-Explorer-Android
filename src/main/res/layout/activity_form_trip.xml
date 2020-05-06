@@ -125,10 +125,20 @@
         </ImageView>
     </LinearLayout>
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:id="@+id/take_picture_image"
+        android:src="@drawable/ic_menu_camera"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/take_picture_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/obtener_imagen"/>
 
     <Button
         android:id="@+id/formTrip_save_button"

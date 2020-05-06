@@ -32,8 +32,8 @@ public class FirestoreService {
         return service;
     }
 
-    public void saveTrip(Trip trip, DatabaseReference.CompletionListener listener) {
-        mDatabase.collection("users").document(userId).collection("trip").add(trip).addOnCompleteListener((OnCompleteListener<DocumentReference>) listener);
+    public void saveTrip(Trip trip, OnCompleteListener<DocumentReference> listener){
+        mDatabase.collection("users").document(userId).collection("trip").add(trip).addOnCompleteListener(listener);
     }
 
     public void selectTrip(Trip trip, OnCompleteListener listener) {

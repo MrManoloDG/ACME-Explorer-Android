@@ -54,4 +54,9 @@
     <string name="fecha_inicio">Fecha Inicio</string>
     <string name="fecha_fin">Fecha Fin</string>
     <string name="date_title_empty_error">Las fechas y el titulo no puede estar vacio</string>
+    <string name="obtener_imagen">Obtener Imagen</string>
+    <string name="take_picture_camara_rationale">Necesitamos acceder a tu camara</string>
+    <string name="take_picture_camara_rationale_ok">Permitir</string>
+    <string name="camera_not_granted">No es posible usar esta función sin la camara</string>
+    <string name="write_external_not_granted">No se puede almacenar la foto sin este permiso</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.acme_explorer.entity;
 
+import com.example.acme_explorer.FirebaseStorageActivity;
 import com.example.acme_explorer.ListTripsActivity;
 import com.example.acme_explorer.R;
 import com.example.acme_explorer.SelectedTripsActivity;
