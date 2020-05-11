@@ -21,6 +21,9 @@ public class Trip implements Serializable {
     private Date startDate, endDate;
     private float price;
     private boolean selected;
+    private float latitude;
+    private float longitude;
+
 
     public Trip(int id, String title, String description, String imgUrl, Date startDate, Date endDate, float price) {
         this.id = id;
@@ -40,6 +43,19 @@ public class Trip implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
+        this.selected = false;
+    }
+
+    public Trip(int id, String title, String description, String imgUrl, Date startDate, Date endDate, float price, float latitude, float longitude) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.imgUrl = imgUrl;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.price = price;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.selected = false;
     }
 
@@ -91,6 +107,22 @@ public class Trip implements Serializable {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 
     public Date getStartDateReturningDate() {

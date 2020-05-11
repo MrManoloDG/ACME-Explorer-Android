@@ -59,4 +59,9 @@
     <string name="take_picture_camara_rationale_ok">Permitir</string>
     <string name="camera_not_granted">No es posible usar esta función sin la camara</string>
     <string name="write_external_not_granted">No se puede almacenar la foto sin este permiso</string>
+    <string name="location_rationale">Necesitamos tu validación para esta funcionalidad</string>
+    <string name="location_rationale_ok">Permitir</string>
+    <string name="location_cancel">Este permiso es importante para la applicación</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
 </resources>

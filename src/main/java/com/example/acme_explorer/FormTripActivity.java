@@ -56,7 +56,7 @@ public class FormTripActivity extends AppCompatActivity {
     private ImageView startDateIcon, endDateIcon;
     private TextView textViewStartDate, textViewEndDate;
     private Button saveButton;
-    private EditText etTitle, etImageURL, etDescription, etPrice;
+    private EditText etTitle, etImageURL, etDescription, etPrice, etLatitude, etLongitude;
 
 
     private static final int CAMERA_PERMISSION_REQUEST = 0x512;
@@ -82,6 +82,8 @@ public class FormTripActivity extends AppCompatActivity {
         etImageURL = findViewById(R.id.formTrip_imageURL);
         etDescription =findViewById(R.id.formTrip_description);
         etPrice = findViewById(R.id.formTrip_price);
+        etLatitude = findViewById(R.id.formTrip_latitude);
+        etLongitude = findViewById(R.id.formTrip_longitude);
 
 
         saveButton = findViewById(R.id.formTrip_save_button);
@@ -147,7 +149,9 @@ public class FormTripActivity extends AppCompatActivity {
                             String.valueOf(etImageURL.getText()),
                             new Date(getStartDate()),
                             new Date(getEndDate()),
-                            Float.parseFloat(String.valueOf(etPrice.getText()))
+                            Float.parseFloat(String.valueOf(etPrice.getText())),
+                            Float.parseFloat(String.valueOf(etLatitude.getText())),
+                            Float.parseFloat(String.valueOf(etLongitude.getText()))
                     );
 
                     FirestoreService.getServiceInstance().saveTrip(trip, new OnCompleteListener<DocumentReference>() {

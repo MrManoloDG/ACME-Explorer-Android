@@ -2,6 +2,7 @@ package com.example.acme_explorer.entity;
 
 import com.example.acme_explorer.FirebaseStorageActivity;
 import com.example.acme_explorer.ListTripsActivity;
+import com.example.acme_explorer.LocationActivity;
 import com.example.acme_explorer.R;
 import com.example.acme_explorer.SelectedTripsActivity;
 
@@ -46,6 +47,7 @@ public class MenuItem {
         ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
         menu.add(new MenuItem("Listado de viajes", R.drawable.ic_airplanemode_active_black_24dp, ListTripsActivity.class));
         menu.add(new MenuItem("Viajes seleccionados", R.drawable.ic_star_black_50dp, SelectedTripsActivity.class));
+        // menu.add(new MenuItem("Location", R.drawable.ic_star_black_50dp, LocationActivity.class));
         return menu;
     }
 }
