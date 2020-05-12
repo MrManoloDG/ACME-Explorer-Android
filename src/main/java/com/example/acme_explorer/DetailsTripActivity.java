@@ -12,6 +12,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class DetailsTripActivity extends AppCompatActivity {
     private TextView locationText;
     private Trip trip;
     private Location locationTrip;
+    private Location location;
+    private Button map_button;
 
     private static final int PERMISSION_REQUEST_CODE_LOCATION = 0x125;
     @Override
@@ -109,6 +112,19 @@ public class DetailsTripActivity extends AppCompatActivity {
 
         locationText = findViewById(R.id.location_textView);
 
+        map_button = findViewById(R.id.map_button);
+        map_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(DetailsTripActivity.this, MapActivity.class);
+                intent1.putExtra("lat", location.getLatitude() );
+                intent1.putExtra("lng", location.getLongitude());
+                intent1.putExtra("lat_trip", locationTrip.getLatitude());
+                intent1.putExtra("lng_trip", locationTrip.getLongitude());
+                startActivity(intent1);
+            }
+        });
+
         String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
         if (ContextCompat.checkSelfPermission(this, permissions[0]) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
@@ -160,7 +176,7 @@ public class DetailsTripActivity extends AppCompatActivity {
             if(locationResult == null || locationResult.getLastLocation() == null || !locationResult.getLastLocation().hasAccuracy()) {
                 return;
             } else {
-                Location location = locationResult.getLastLocation();
+                location = locationResult.getLastLocation();
                 locationText.setText("Distance: " + location.distanceTo(locationTrip) + " m");
                 Log.i("MasterITS", "Location: " + location.getLatitude() + ", " + location.getLongitude() + ", " + location.getAccuracy());
             }
